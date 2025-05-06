@@ -1,1 +1,20 @@
-npm init -y
+{
+  "name": "backstage-circleci-integration",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akshayrathi4991/backstage-circleci-integration.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akshayrathi4991/backstage-circleci-integration/issues"
+  },
+  "homepage": "https://github.com/akshayrathi4991/backstage-circleci-integration#readme",
+  "description": ""
+}
