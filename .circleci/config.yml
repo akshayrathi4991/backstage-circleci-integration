@@ -23,7 +23,7 @@ jobs:
           name: Build Docker image
           command: |
             echo "Building Docker image"
-            docker build -t backstage-circleci-integration:latest .
+            docker build -t "$DOCKER_USERNAME/backstage-circleci-integration:latest" .
       # Docker push step
       - run:
           name: Push Docker image to Docker Hub
