@@ -17,17 +17,15 @@ jobs:
             npm test
 
       # Docker build and push to Docker Hub
-      - run:
-          name: Build Docker Image
-          command: |
-            # Log in to Docker Hub
-            echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
-
-            # Build the Docker image
-            docker build -t $DOCKER_USERNAME/backstage-circleci-integration:latest .
-
-            # Push the Docker image to Docker Hub
-            docker push $DOCKER_USERNAME/backstage-circleci-integration:latest
+      # Add build step here
+      - run: |
+          echo "Building Docker image"
+          docker build -t "$DOCKER_USERNAME/backstage-circleci-integration:latest" .
+      # Add push step here
+      - run: |
+          echo "Pushing Docker image to Docker Hub"
+          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+          docker push $DOCKER_USERNAME/backstage-circleci-integration:latest
 
 workflows:
   version: 2
