@@ -18,7 +18,7 @@ jobs:
           command: |
             npm test
 
-      # Docker build steps
+      # Docker build step
       - run:
           name: Build Docker image
           command: |
