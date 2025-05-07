@@ -8,5 +8,5 @@ metadata:
     # github.com/project-slug: akshayrathi4991/backstage-circleci-integration
 spec:
   type: service
-  lifecycle: production
+  lifecycle: website
   owner: guests
