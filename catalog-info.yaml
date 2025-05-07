@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: backstage-circleci-integration-test
+  description: A Test app integrated with CircleCI
+  annotations:
+    circleci.com/project-slug: github/akshayrathi4991/backstage-circleci-integration
+spec:
+  type: service
+  lifecycle: production
+  owner: guests
