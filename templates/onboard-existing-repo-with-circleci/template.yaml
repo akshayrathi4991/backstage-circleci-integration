@@ -1,0 +1,49 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: onboard-existing-repo-with-circleci
+  title: Onboard GitHub Repo with CircleCI
+  description: Registers an existing GitHub repo into Backstage and enables it on CircleCI
+spec:
+  owner: user:guest
+  type: service
+
+  parameters:
+    - title: Repository Info
+      required:
+        - repoUrl
+        - circleciToken
+        - description
+      properties:
+        repoUrl:
+          title: GitHub Repository
+          type: object
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+        description:
+          title: Component Description
+          type: string
+        circleciToken:
+          title: CircleCI Token
+          type: string
+          description: Personal API token for CircleCI
+          ui:help: You can generate one at https://circleci.com/account/api
+
+  steps:
+    - id: register
+      name: Register in Backstage
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ parameters.repoUrl.url }}
+        catalogInfoPath: /catalog-info.yaml
+
+    - id: enable-circleci
+      name: Enable project in CircleCI
+      action: custom:command:execute
+      input:
+        command: >
+          curl -sf -X POST
+          https://circleci.com/api/v1.1/project/github/${{ parameters.repoUrl.owner }}/${{ parameters.repoUrl.repoName }}/follow
+          -H "Circle-Token: ${{ parameters.circleciToken }}"
